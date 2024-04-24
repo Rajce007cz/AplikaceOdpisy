@@ -8,35 +8,41 @@
     android:foregroundTint="#E91E63"
     tools:context=".MainActivity">
 
-    <Button
-        android:id="@+id/btnSpocitat"
-        android:layout_width="181dp"
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="302dp"
         android:layout_height="48dp"
-        android:text="@string/spočtat"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="55dp"
-        tools:layout_editor_absoluteY="428dp" />
+        android:layout_marginStart="46dp"
+        android:orientation="horizontal"
+        android:visibility="visible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        tools:ignore="MissingConstraints,TextSizeCheck">
 
-    <EditText
-        android:id="@+id/vc"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="number"
-        android:minHeight="48dp"
-        tools:ignore="LabelFor,MissingConstraints,SpeakableTextPresentCheck"
-        tools:layout_editor_absoluteX="165dp"
-        tools:layout_editor_absoluteY="7dp"
-        android:importantForAutofill="no" />
+        <RadioButton
+            android:id="@+id/rbRovno"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="100"
+            android:text="@string/rovnom_rn" />
+
+        <RadioButton
+            android:id="@+id/rbZrych"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="100"
+            android:text="@string/zrychlen" />
+    </RadioGroup>
 
     <RadioGroup
+        android:id="@+id/radioGroup2"
         android:layout_width="300dp"
         android:layout_height="265dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.432"
         app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="MissingConstraints,TextSizeCheck"
-        tools:layout_editor_absoluteY="155dp">
+        app:layout_constraintTop_toBottomOf="@+id/textView3"
+        tools:ignore="MissingConstraints,TextSizeCheck">
 
         <RadioButton
             android:id="@+id/rb1"
@@ -94,86 +100,99 @@
 
     </RadioGroup>
 
+    <Button
+        android:id="@+id/btnSpocitat"
+        android:layout_width="181dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="55dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/spočtat"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup2"
+        tools:ignore="MissingConstraints" />
+
+    <EditText
+        android:id="@+id/vc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="7dp"
+        android:ems="10"
+        android:importantForAutofill="no"
+        android:inputType="number"
+        android:minHeight="48dp"
+        app:layout_constraintStart_toEndOf="@+id/txt1"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="LabelFor,MissingConstraints,SpeakableTextPresentCheck" />
+
     <TextView
         android:id="@+id/txt1"
         android:layout_width="133dp"
         android:layout_height="27dp"
         android:layout_marginStart="28dp"
+        android:layout_marginTop="14dp"
         android:text="@string/vstupn_cena"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="MissingConstraints,TextSizeCheck"
-        tools:layout_editor_absoluteY="14dp" />
-
-    <RadioGroup
-        android:layout_width="302dp"
-        android:layout_height="48dp"
-        android:orientation="horizontal"
-        android:visibility="visible"
-        tools:ignore="MissingConstraints,TextSizeCheck"
-        tools:layout_editor_absoluteX="46dp"
-        tools:layout_editor_absoluteY="77dp">
-
-        <RadioButton
-            android:id="@+id/rbRovno"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="100"
-            android:text="@string/rovnom_rn" />
-
-        <RadioButton
-            android:id="@+id/rbZrych"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="100"
-            android:text="@string/zrychlen" />
-    </RadioGroup>
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints,TextSizeCheck" />
 
     <ScrollView
         android:id="@+id/nview"
         android:layout_width="413dp"
         android:layout_height="253dp"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="481dp">
+        android:layout_marginTop="5dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnSpocitat"
+        tools:ignore="MissingConstraints">
 
         <TextView
             android:id="@+id/nview_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/textview" />
+            android:autoText="false"
+            android:clickable="false"
+            android:editable="false"
+            tools:ignore="Deprecated,TextViewEdits" />
     </ScrollView>
 
     <Button
         android:id="@+id/btnReset"
         android:layout_width="106dp"
         android:layout_height="48dp"
+        android:layout_marginStart="13dp"
+        android:layout_marginTop="8dp"
         android:text="@string/reset"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="249dp"
-        tools:layout_editor_absoluteY="428dp" />
+        app:layout_constraintStart_toEndOf="@+id/btnSpocitat"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup2"
+        tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="102dp"
         android:layout_height="22dp"
+        android:layout_marginStart="55dp"
+        android:layout_marginTop="14dp"
         android:text="@string/druh_odpisu"
         android:textSize="16sp"
         android:textStyle="bold"
-        tools:ignore="MissingConstraints,TextSizeCheck"
-        tools:layout_editor_absoluteX="55dp"
-        tools:layout_editor_absoluteY="55dp" />
+        android:visibility="visible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt1"
+        tools:ignore="MissingConstraints,TextSizeCheck" />
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="46dp"
+        android:layout_marginTop="8dp"
         android:text="@string/odpisov_skupina"
         android:textSize="16sp"
         android:textStyle="bold"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="46dp"
-        tools:layout_editor_absoluteY="133dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup"
+        tools:ignore="MissingConstraints" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

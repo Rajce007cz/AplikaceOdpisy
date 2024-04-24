@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -12,8 +13,6 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import java.util.concurrent.atomic.AtomicInteger;
-
 public class MainActivity extends AppCompatActivity {
     private Integer normalRok = 0 ;
     private Integer ucetRok = 0 ;
@@ -21,9 +20,10 @@ public class MainActivity extends AppCompatActivity {
     private Button btnReset;
     private TextView vc; // Assuming these are TextViews
     private RadioButton rb1, rb2, rb3, rb4, rb5, rb6, rbRovno, rbZrych; // Assuming these are RadioButtons
+    private RadioGroup radioGroup, radioGroup2;
     private SeznamOdpisu seznamOdpisu;
     private TextView nviewText;
-
+    private Double sazba = 0.0;
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,18 +48,22 @@ public class MainActivity extends AppCompatActivity {
             rb4 = findViewById(R.id.rb4); // Replace with actual id
             rb5 = findViewById(R.id.rb5); // Replace with actual id
             rb6 = findViewById(R.id.rb6); // Replace with actual id
+            radioGroup = findViewById(R.id.radioGroup);
+            radioGroup2 = findViewById(R.id.radioGroup2);
             rbRovno = findViewById(R.id.rbRovno); // Replace with actual id
             rbZrych = findViewById(R.id.rbZrych); // Replace with actual id
             SeznamOdpisu seznamOdpisu = new SeznamOdpisu();
-            btnVypocet.setOnClickListener(e -> vypocet());
+            btnVypocet.setOnClickListener(e -> zobraz());
             btnReset.setOnClickListener(e -> {
                 vc.setText("");
                 normalRok = 0;
                 ucetRok = 0;
+                radioGroup.clearCheck();
+                radioGroup2.clearCheck();
+                nviewText.setText("");
                 seznamOdpisu.seznamOdpisu.clear();
             });
     }
-    Double sazba = 0.0;
         public void initSazba () {
             if (rbRovno.isSelected()) {
                 if (normalRok == 0) {
@@ -145,13 +149,13 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         public void vypocet () {
-            double VC = Double.parseDouble((String) vc.getText());
+            double VC = Double.parseDouble((String)vc.getText());
             double ZC = VC;
             double opravky = 0;
             if (rbRovno.isSelected()) {
                 while (ZC > 0) {
                     initSazba();
-                    double odpis = Double.parseDouble((String) vc.getText()) * (sazba / 100);
+                    double odpis = Double.parseDouble((String)vc.getText()) * (sazba / 100);
                     opravky += odpis;
                     ZC -= odpis;
                     seznamOdpisu.pridatOdpis(new Odpis(normalRok, odpis, opravky, ZC, Double.parseDouble((String) vc.getText())));
@@ -181,9 +185,11 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     public void zobrazOdpis () {
-        nviewText.setText("");
         for (Odpis odpis : seznamOdpisu.seznamOdpisu) {
             nviewText.append("Rok: " + odpis.getRok() + " Odpis: " + odpis.getOdpis() + " Opravky: " + odpis.getOpravky() + " ZC: " + odpis.getZC() + " VC: " + odpis.getVC() + "\n");
         }
+    }
+    public void zobraz(){
+        nviewText.append("Ro");
     }
     }
