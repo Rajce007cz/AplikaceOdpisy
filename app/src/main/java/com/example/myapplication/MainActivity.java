@@ -16,14 +16,15 @@ import androidx.core.view.WindowInsetsCompat;
 public class MainActivity extends AppCompatActivity {
     private Integer normalRok = 0 ;
     private Integer ucetRok = 0 ;
-    private Button btnVypocet; // Assuming these are buttons
+    private Button btnVypocet;
     private Button btnReset;
-    private TextView vc; // Assuming these are TextViews
-    private RadioButton rb1, rb2, rb3, rb4, rb5, rb6, rbRovno, rbZrych; // Assuming these are RadioButtons
+    private TextView vc;
+    private RadioButton rb1, rb2, rb3, rb4, rb5, rb6, rbRovno, rbZrych;
     private RadioGroup radioGroup, radioGroup2;
     private SeznamOdpisu seznamOdpisu;
     private TextView nviewText;
     private Double sazba = 0.0;
+    private Double test = 0.0;
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,24 +37,22 @@ public class MainActivity extends AppCompatActivity {
             return insets;
 
         });
-
-            // Initialize your variables here
-            btnVypocet = findViewById(R.id.btnSpocitat); // Replace with actual id
-            btnReset = findViewById(R.id.btnReset); // Replace with actual id
+            seznamOdpisu = new SeznamOdpisu();
+            btnVypocet = findViewById(R.id.btnSpocitat);
+            btnReset = findViewById(R.id.btnReset);
             nviewText = findViewById(R.id.nview_text);
-            vc = findViewById(R.id.vc); // Replace with actual id
-            rb1 = findViewById(R.id.rb1); // Replace with actual id
-            rb2 = findViewById(R.id.rb2); // Replace with actual id
-            rb3 = findViewById(R.id.rb3); // Replace with actual id
-            rb4 = findViewById(R.id.rb4); // Replace with actual id
-            rb5 = findViewById(R.id.rb5); // Replace with actual id
-            rb6 = findViewById(R.id.rb6); // Replace with actual id
+            vc = findViewById(R.id.vc);
+            rb1 = findViewById(R.id.rb1);
+            rb2 = findViewById(R.id.rb2);
+            rb3 = findViewById(R.id.rb3);
+            rb4 = findViewById(R.id.rb4);
+            rb5 = findViewById(R.id.rb5);
+            rb6 = findViewById(R.id.rb6);
             radioGroup = findViewById(R.id.radioGroup);
             radioGroup2 = findViewById(R.id.radioGroup2);
-            rbRovno = findViewById(R.id.rbRovno); // Replace with actual id
-            rbZrych = findViewById(R.id.rbZrych); // Replace with actual id
-            SeznamOdpisu seznamOdpisu = new SeznamOdpisu();
-            btnVypocet.setOnClickListener(e -> zobraz());
+            rbRovno = findViewById(R.id.rbRovno);
+            rbZrych = findViewById(R.id.rbZrych);
+            btnVypocet.setOnClickListener(e -> vypocet());
             btnReset.setOnClickListener(e -> {
                 vc.setText("");
                 normalRok = 0;
@@ -65,111 +64,114 @@ public class MainActivity extends AppCompatActivity {
             });
     }
         public void initSazba () {
-            if (rbRovno.isSelected()) {
+            if (rbRovno.isChecked()) {
                 if (normalRok == 0) {
-                    if (rb1.isSelected()) {
+                    if (rb1.isChecked()) {
                         sazba = 20.0;
                     }
-                    if (rb2.isSelected()) {
+                    if (rb2.isChecked()) {
                         sazba = 11.0;
                     }
-                    if (rb3.isSelected()) {
+                    if (rb3.isChecked()) {
                         sazba = 5.5;
                     }
-                    if (rb4.isSelected()) {
+                    if (rb4.isChecked()) {
                         sazba = 2.15;
                     }
-                    if (rb5.isSelected()) {
+                    if (rb5.isChecked()) {
                         sazba = 1.4;
                     }
-                    if (rb6.isSelected()) {
+                    if (rb6.isChecked()) {
                         sazba = 1.02;
                     }
                 } else {
-                    if (rb1.isSelected()) {
+                    if (rb1.isChecked()) {
                         sazba = 40.0;
                     }
-                    if (rb2.isSelected()) {
+                    if (rb2.isChecked()) {
                         sazba = 22.25;
                     }
-                    if (rb3.isSelected()) {
+                    if (rb3.isChecked()) {
                         sazba = 10.5;
                     }
-                    if (rb4.isSelected()) {
+                    if (rb4.isChecked()) {
                         sazba = 5.15;
                     }
-                    if (rb5.isSelected()) {
+                    if (rb5.isChecked()) {
                         sazba = 3.4;
                     }
-                    if (rb6.isSelected()) {
+                    if (rb6.isChecked()) {
                         sazba = 2.02;
                     }
                 }
             }
-            if (rbZrych.isSelected()) {
+            if (rbZrych.isChecked()) {
                 if (normalRok == 0) {
-                    if (rb1.isSelected()) {
+                    if (rb1.isChecked()) {
                         sazba = 3.0;
                     }
-                    if (rb2.isSelected()) {
+                    if (rb2.isChecked()) {
                         sazba = 5.0;
                     }
-                    if (rb3.isSelected()) {
+                    if (rb3.isChecked()) {
                         sazba = 10.0;
                     }
-                    if (rb4.isSelected()) {
+                    if (rb4.isChecked()) {
                         sazba = 20.0;
                     }
-                    if (rb5.isSelected()) {
+                    if (rb5.isChecked()) {
                         sazba = 30.0;
                     }
-                    if (rb6.isSelected()) {
+                    if (rb6.isChecked()) {
                         sazba = 50.0;
                     }
                 } else {
-                    if (rb1.isSelected()) {
+                    if (rb1.isChecked()) {
                         sazba = 4.0;
                     }
-                    if (rb2.isSelected()) {
+                    if (rb2.isChecked()) {
                         sazba = 6.0;
                     }
-                    if (rb3.isSelected()) {
+                    if (rb3.isChecked()) {
                         sazba = 11.0;
                     }
-                    if (rb4.isSelected()) {
+                    if (rb4.isChecked()) {
                         sazba = 21.0;
                     }
-                    if (rb5.isSelected()) {
+                    if (rb5.isChecked()) {
                         sazba = 31.0;
                     }
-                    if (rb6.isSelected()) {
+                    if (rb6.isChecked()) {
                         sazba = 51.0;
                     }
                 }
             }
         }
         public void vypocet () {
-            double VC = Double.parseDouble((String)vc.getText());
+            String VCString = vc.getText().toString();
+            double VC = Double.parseDouble(VCString);
             double ZC = VC;
-            double opravky = 0;
-            if (rbRovno.isSelected()) {
+            double opravky = 0.0;
+            if (rbRovno.isChecked()) {
                 while (ZC > 0) {
                     initSazba();
-                    double odpis = Double.parseDouble((String)vc.getText()) * (sazba / 100);
+                    double odpis = VC * (sazba / 100);
                     opravky += odpis;
                     ZC -= odpis;
-                    seznamOdpisu.pridatOdpis(new Odpis(normalRok, odpis, opravky, ZC, Double.parseDouble((String) vc.getText())));
                     normalRok++;
                     ucetRok++;
+                    test = ZC;
+                    seznamOdpisu.pridatOdpis(new Odpis(normalRok, odpis, opravky, ZC, VC));
                     zobrazOdpis();
-                }
+                    //zobraz();
+                    }
             }
-            if (rbZrych.isSelected()) {
+            if (rbZrych.isChecked()) {
                 while (ZC > 0) {
                     initSazba();
                     double odpis = 0;
                     if (normalRok == 0) {
-                        odpis = Double.parseDouble((String) vc.getText()) / sazba;
+                        odpis = VC / sazba;
                         ucetRok++;
                     }
                     if (normalRok > 0) {
@@ -178,18 +180,20 @@ public class MainActivity extends AppCompatActivity {
                     }
                     opravky += odpis;
                     ZC -= odpis;
-                    seznamOdpisu.pridatOdpis(new Odpis(normalRok, odpis, opravky, ZC, Double.parseDouble((String) vc.getText())));
+                    seznamOdpisu.pridatOdpis(new Odpis(normalRok, odpis, opravky, ZC, VC));
                     normalRok++;
                     zobrazOdpis();
                 }
             }
         }
     public void zobrazOdpis () {
-        for (Odpis odpis : seznamOdpisu.seznamOdpisu) {
-            nviewText.append("Rok: " + odpis.getRok() + " Odpis: " + odpis.getOdpis() + " Opravky: " + odpis.getOpravky() + " ZC: " + odpis.getZC() + " VC: " + odpis.getVC() + "\n");
-        }
+        Odpis odpis = seznamOdpisu.seznamOdpisu.get(seznamOdpisu.seznamOdpisu.size() - 1);
+        nviewText.append("Rok: " + odpis.getRok() + " Odpis: " + odpis.getOdpis() + " Opravky: " + odpis.getOpravky() + " ZC: " + odpis.getZC() + " VC: " + odpis.getVC() + "\n");
+
     }
     public void zobraz(){
-        nviewText.append("Ro");
+        initSazba();
+        double VC = Double.parseDouble(vc.getText().toString());
+        nviewText.append("Sazba:"+ sazba +" VC: " + VC + "ZC:"+ test +"\n");
     }
     }
