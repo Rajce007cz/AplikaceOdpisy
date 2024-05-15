@@ -13,15 +13,19 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import java.util.Arrays;
+
 public class MainActivity extends AppCompatActivity {
     private Integer normalRok = 0 ;
     private Integer ucetRok = 0 ;
     private Button btnVypocet;
     private Button btnReset;
+    private Button btnHistorie;
     private TextView vc;
     private RadioButton rb1, rb2, rb3, rb4, rb5, rb6, rbRovno, rbZrych;
     private RadioGroup radioGroup, radioGroup2;
     private SeznamOdpisu seznamOdpisu;
+    private Historie seznamHistorie;
     private TextView nviewText;
     private Double sazba = 0.0;
     private Double test = 0.0;
@@ -38,8 +42,10 @@ public class MainActivity extends AppCompatActivity {
 
         });
             seznamOdpisu = new SeznamOdpisu();
+            seznamHistorie = new Historie();
             btnVypocet = findViewById(R.id.btnSpocitat);
             btnReset = findViewById(R.id.btnReset);
+            btnHistorie = findViewById(R.id.btnHistorie);
             nviewText = findViewById(R.id.nview_text);
             vc = findViewById(R.id.vc);
             rb1 = findViewById(R.id.rb1);
@@ -53,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
             rbRovno = findViewById(R.id.rbRovno);
             rbZrych = findViewById(R.id.rbZrych);
             btnVypocet.setOnClickListener(e -> vypocet());
+            btnHistorie.setOnClickListener(e -> zobrazHistorii());
             btnReset.setOnClickListener(e -> {
                 vc.setText("");
                 normalRok = 0;
@@ -148,6 +155,9 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         public void vypocet () {
+            normalRok = 0;
+            ucetRok = 0;
+            nviewText.setText("");
             String VCString = vc.getText().toString();
             double VC = Double.parseDouble(VCString);
             double ZC = VC;
@@ -162,8 +172,8 @@ public class MainActivity extends AppCompatActivity {
                     ucetRok++;
                     test = ZC;
                     seznamOdpisu.pridatOdpis(new Odpis(normalRok, odpis, opravky, ZC, VC));
+                    seznamHistorie.pridatOdpisy(new Odpis(normalRok, odpis, opravky, ZC, VC));
                     zobrazOdpis();
-                    //zobraz();
                     }
             }
             if (rbZrych.isChecked()) {
@@ -181,6 +191,7 @@ public class MainActivity extends AppCompatActivity {
                     opravky += odpis;
                     ZC -= odpis;
                     seznamOdpisu.pridatOdpis(new Odpis(normalRok, odpis, opravky, ZC, VC));
+                    seznamHistorie.pridatOdpisy(new Odpis(normalRok, odpis, opravky, ZC, VC));
                     normalRok++;
                     zobrazOdpis();
                 }
@@ -191,9 +202,11 @@ public class MainActivity extends AppCompatActivity {
         nviewText.append("Rok: " + odpis.getRok() + " Odpis: " + odpis.getOdpis() + " Opravky: " + odpis.getOpravky() + " ZC: " + odpis.getZC() + " VC: " + odpis.getVC() + "\n");
 
     }
-    public void zobraz(){
-        initSazba();
-        double VC = Double.parseDouble(vc.getText().toString());
-        nviewText.append("Sazba:"+ sazba +" VC: " + VC + "ZC:"+ test +"\n");
+    public void zobrazHistorii(){
+        nviewText.setText("");
+        Odpis odpis = seznamHistorie.seznamHistorie.get(seznamHistorie.seznamHistorie.size() - 1);
+        for(Odpis odpis1: seznamHistorie.seznamHistorie){
+            nviewText.append("Rok: " + odpis1.getRok() + " Odpis: " + odpis1.getOdpis() + " Opravky: " + odpis1.getOpravky() + " ZC: " + odpis1.getZC() + " VC: " + odpis1.getVC() + "\n");
+        }
     }
     }
