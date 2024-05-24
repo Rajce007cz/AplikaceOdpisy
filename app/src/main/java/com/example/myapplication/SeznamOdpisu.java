@@ -9,4 +9,3 @@ public class SeznamOdpisu {
         seznamOdpisu.add(odpis);
     }
 }
-

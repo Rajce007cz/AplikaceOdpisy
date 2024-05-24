@@ -1,17 +1,12 @@
 <resources>
-    <string name="app_name">My Application</string>
-    <string name="spočtat">Spočítat</string>
+    <string name="app_name">Odpisy_Aplikace</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="zp_sob_odpisu">Způsob odpisu:</string>
+    <string name="vstupn_cena">Vstupní cena:</string>
+    <string name="odpisov_skupina">Odpisová skupina:</string>
+    <string name="historie">Historie</string>
     <string name="textview">TextView</string>
     <string name="reset">Reset</string>
-    <string name="_1">1.</string>
-    <string name="_4">4.</string>
-    <string name="_2">2.</string>
-    <string name="_3">3.</string>
-    <string name="_5">5.</string>
-    <string name="_6">6.</string>
-    <string name="rovnom_rn">Rovnoměrný</string>
-    <string name="zrychlen">Zrychlený</string>
-    <string name="druh_odpisu">Druh odpisu:</string>
-    <string name="odpisov_skupina">Odpisová skupina:</string>
-    <string name="vstupn_cena">Vstupní cena:</string>
+    <string name="spo_tat">Spočítat</string>
 </resources>
